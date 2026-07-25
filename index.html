@@ -305,7 +305,7 @@ const STORAGE_KEY = 'xianji_erxuanyi_v5_progress';
 
 // ── 歌手照片路径 ──
 function getPhotoPath(name) {
-  return '图片/' + name + '.jpg';
+  return encodeURI('图片/' + name + '.jpg');
 }
 // ── 歌手海报配色（图片加载失败时回退） ──
 const POSTER_COLORS = {
@@ -632,13 +632,16 @@ function handlePick(match, chosenSong) {
   (chosen === cardA ? cardB : cardA).classList.add('fade-out');
 
   setTimeout(() => {
+    // ★ 先清除旧卡片视觉状态，防止移动端动画残留
+    chosen.classList.remove('chosen');
+    (chosen === cardA ? cardB : cardA).classList.remove('fade-out');
+    void $('#pkArena').offsetWidth; // 强制重绘
+
     appState.bracket = processPick(appState.bracket, match.id, chosenSong.id);
 
     // 检测是否进入了新一轮 —— 如果是，清空回退历史
-    // （用户不能跨轮回退，只能在当前轮内回退）
     const prevHistoryLen = appState.bracketHistory.length;
     if (prevHistoryLen > 0) {
-      // 如果所有快照对应的轮次与当前轮不同，说明进入了新一轮，清空历史
       const curRound = getCurrentRoundNumber(appState.bracket);
       const lastSnapshot = appState.bracketHistory[appState.bracketHistory.length - 1];
       const lastRound = getCurrentRoundNumber(lastSnapshot);
