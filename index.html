@@ -305,6 +305,7 @@ const STORAGE_KEY = 'xianji_erxuanyi_v5_progress';
 
 // ── 歌手照片路径 ──
 function getPhotoPath(name) {
+  // URL 编码中文字符，否则 GitHub Pages 返回 404
   return encodeURI('图片/' + name + '.jpg');
 }
 // ── 歌手海报配色（图片加载失败时回退） ──
@@ -530,7 +531,7 @@ function renderArtists(filter = '') {
     const gradient = getPosterGradient(a.name);
     return '<div class="artist-card" data-id="' + a.id + '">' +
       '<div class="artist-poster" style="background:' + gradient + ';">' +
-        '<img src="' + photoPath + '" alt="' + a.name + '" loading="lazy">' +
+        '<img src="' + photoPath + '" alt="' + a.name + '">' +
       '</div>' +
       '<div class="artist-name">' + a.name + '</div>' +
       '<div class="artist-meta">' + a.albums.length + '专辑 · ' + s + '首</div>' +
