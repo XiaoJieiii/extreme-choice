@@ -6,21 +6,21 @@
 <title>极限二选一</title>
 <script>
 // ========== 极限二选一 · 歌手数据库 ==========
-// 歌手数: 5 | 专辑数: 33 | 歌曲总数: 928
+// 歌手数: 6 | 专辑数: 34 | 歌曲总数: 974
 
 const ARTISTS_DB = [
   {
     id: '陈奕迅',
     name: '陈奕迅',
     albums: [
-      { name: '作品集', year: 0, songs: ['时代曲', '伤信', '游离份子', '我怕你不肯', '有意无意', '安守本份', '爱情，幼稚！', '从未痴心', '其实我记得', '当心中有恋爱感觉', '现场直播', '与我常在', '爱没有左右', '生命有几好', '抱拥这分钟', '那一夜没有雪？', '伴游', '跟我走好吗', '今天等我来', '敌人', '那一夜有没有说', '我的快乐时代', '我什么都没有', '天下无双', '黄金时代', '愈想愈无谓', '相信相依', '两种讲法', '请相信我', '反高潮', '多一点', 'Mr Cab Driver (Live)', '时代曲 (Live)', '寻开心 (Live)', '不再让你孤单 (Live)', '昨日', '今日', '每一个明天', '眼眉调', '第五个现代化', '快高长大', '如果这一秒钟你跟我讲你不爱我', '我的世界末日', '贝多芬与我', 'MADE IN HONG KONG', '黑夜不再来', '美丽有罪', '戏迷情人', '和平饭店', '我感激', '到此一游', '当这地球没有花', '爱上你是我眼睛的错', 'K歌之王', '打得火热', '新广告歌', '低等动物', '绵绵', '美丽谎言', '吹微风', '温室效应', '活跃症', '下周同样时间', 'Eason’s Angel', 'Shall We Talk', 'Shall We Dance', '单车', '孤独探戈', '怪物', '黑暗中漫舞', '伤心花舍', '失恋太少', '太空漫游', '天使的礼物', '阿士匹灵', '阳性反应', '冲口而出', '大开眼戒', '我不好爱', '热带雨林', '人工智能', '结束开始', '活着多好', '他一个人', '不知所谓', '十面埋伏', '呀边个边个', '小孩不懂怕', '幸灾乐祸', 'KATRINA', '猜情寻', '葡萄成熟时', '遇见了你 (国)', '浮夸', '夕阳无限好', '16月6日 晴', '怕死', '三个人的探戈', '烂', '不良嗜好', '新美人主义 (国)', '阿牛', '大个女', '裙下之臣', '最后的嘻皮士', '白玫瑰', '黑择明', '富士山下', '不如不见', '心深伤透', '解药', '天公地道', '粤语残片', '玛利奥派对', '热岛小夜曲', '闪', '演唱会', '滑铁卢车站', 'Crying in the Party', '狂热革命', '变色龙', '时代巨轮', '乜嘢啫', '兄弟 (国)', 'Allegro Opus 3.3 a.m.', '还有什么可以送给你', '于心有愧', '今天只做一件事', '一个旅人', '七百年后', 'Life Goes On', '太阳照常升起', '不来也不去', '沙龙', '无人之境', '大人', '一丝不挂', '陀飞轮', '心腹', '味之素', '主旋律', '告别娑婆', '斯德哥尔摩情人', '任我行', '远在咫尺', '失忆蝴蝶', '床头床尾', '阿猫阿狗', '老细我撇先', '无条件', '人生马拉松', '黑洞', '心烧', '喜欢一个人', '万圣节的一个传说', '起点·终站', '一个灵魂的独白', '梦的可能', '8:15pm (序)', '破坏王', '海里睡人', '渐渐', '敬菸', '蠢', '疯狂的朋友', '我们万岁', '龙舌兰', '心之科学', '与你常在', '可一可再', '保重 (国)', '破坏王 (Instrumental)', '尘大师', '人啊人', '焦焦焦', '社交恐惧癌', '空城记', '是但求其爱', '盲婚哑嫁', '致明日的舞', '马利奥派对 (Live)', '我们万岁 (Live)', '社交恐惧癌 (Live)', '是但求其爱 (Live)', '一滴眼泪', '拜访', '爱到疯', '永远都天明', '情深怎么办', '我怎么可以哭', '学会爱', 'Style', '二个人的夜晚', '感情约', '预感', '酝酿', '摊开双手', '换季', '爱的傀儡', '感动', '我终于放开了他', '好聚好散', '宠爱', 'LA’MOUR', 'TAIPEI CITY', '预感', '婚礼的祝福', '拔河', '我的开始在这里', '转机', 'My Girl', '掏空', '伤心证明书', '1个2个3个4个', 'Just Between The Two Of Us', '存在', 'Good Times', 'K歌之王(国语版)', '爱是怀疑(国语版)', '不如这样(国语版)', '低等动物(国语版)', '没有你(国语版)', '全世界失眠(国语版)', '我也不会那样做(国语版)', '冤家(国语版)', 'Special Thanks To 1', 'Special Thanks To 2', 'Special Thanks To 3', '人造卫星', '你会不会', '你的背包', '想哭', '没有手机的日子', '狂人日记', '男人的错', '谢谢侬', '跳蚤市场', '故事', '阿怪', '我们都寂寞', '兄妹', '十年', '要你的', '世界', '谢谢', '寂寞让你更快乐', '不睡', 'Last Order', '不能再等待', '对不起 谢谢', 'Hippie', '不然你要我怎么样', '不睡', '一夜销魂', '浮城', '早开的长途班', '听听 (粤)', '人神斗 (粤)', '烟味', '淘汰', '快乐男生', '红玫瑰', '月黑风高', '爱情转移', '好久不见', '爱是一本书', '第一个雅皮士', '白色球鞋', '月球上的人 (粤语) (Bonus Track)', '路...一直都在', '不要说话', '七', '倒带人生', 'Aren’t you glad?', '土星环', '漂亮小姐', '独居动物', '臭美', '然后怎样', '在你身边', '这样的一个麻烦', '多少', 'Nothing Ever Happened', '你为什么哭了呢', '谋情害命', '我甲你', '心的距离', '床头灯', '给你', '从何说起', '孤独患者', '哎呀咿呀', '看穿', '吟游诗人', '张氏情歌', 'Baby Song', '听一千遍后', '内疚', '还要不要走', '积木', '神奇化妆师', 'Muffin Man', '米 (Rice)', '娱乐天空', '四季圈', '愚人快乐', '不如承诺来的简单', '阴天快乐', '闪 (Shine)', '光辉岁月', '可以了', '海胆', '谁来剪月光', '放', '收心操', '海胆', '谁来剪月光', '床上的黑洞', '右上角', '之外', '傅科摆', '零下几分钟', '披风', '低调', '人车志', '最佳损友', '暴殄天物', '落花流水', '大得太快', '想听', '终于一百日', '新生活', '游移的伤口', '地狱咒', '天一半，地一半', '回绝', '美满人生', '原来这里没有你', '天网', 'King Kong', 'Lonely', '歌·颂', '后台', '幸福摩天轮', '时光倒流二十年', '圣诞结', 'Shall We Talk (国)', '寂寞让你更快乐'] },
+      { name: '作品集', year: 0, songs: ['时代曲', '伤信', '游离份子', '我怕你不肯', '有意无意', '安守本份', '爱情，幼稚！', '从未痴心', '其实我记得', '当心中有恋爱感觉', '现场直播', '与我常在', '爱没有左右', '生命有几好', '抱拥这分钟', '那一夜没有雪？', '伴游', '跟我走好吗', '今天等我来', '敌人', '那一夜有没有说', '我的快乐时代', '我什么都没有', '天下无双', '黄金时代', '愈想愈无谓', '相信相依', '两种讲法', '请相信我', '反高潮', '多一点', 'Mr Cab Driver (Live)', '时代曲 (Live)', '寻开心 (Live)', '不再让你孤单 (Live)', '昨日', '今日', '每一个明天', '眼眉调', '第五个现代化', '快高长大', '如果这一秒钟你跟我讲你不爱我', '我的世界末日', '贝多芬与我', 'MADE IN HONG KONG', '黑夜不再来', '美丽有罪', '戏迷情人', '和平饭店', '我感激', '到此一游', '当这地球没有花', '爱上你是我眼睛的错', 'K歌之王', '打得火热', '新广告歌', '低等动物', '绵绵', '美丽谎言', '吹微风', '温室效应', '活跃症', '下周同样时间', 'Eason\'s Angel', 'Shall We Talk', 'Shall We Dance', '单车', '孤独探戈', '怪物', '黑暗中漫舞', '伤心花舍', '失恋太少', '太空漫游', '天使的礼物', '阿士匹灵', '阳性反应', '冲口而出', '大开眼戒', '我不好爱', '热带雨林', '人工智能', '结束开始', '活着多好', '他一个人', '不知所谓', '十面埋伏', '呀边个边个', '小孩不懂怕', '幸灾乐祸', 'KATRINA', '猜情寻', '葡萄成熟时', '遇见了你 (国)', '浮夸', '夕阳无限好', '16月6日 晴', '怕死', '三个人的探戈', '烂', '不良嗜好', '新美人主义 (国)', '阿牛', '大个女', '裙下之臣', '最后的嘻皮士', '白玫瑰', '黑择明', '富士山下', '不如不见', '心深伤透', '解药', '天公地道', '粤语残片', '玛利奥派对', '热岛小夜曲', '闪', '演唱会', '滑铁卢车站', 'Crying in the Party', '狂热革命', '变色龙', '时代巨轮', '乜嘢啫', '兄弟 (国)', 'Allegro Opus 3.3 a.m.', '还有什么可以送给你', '于心有愧', '今天只做一件事', '一个旅人', '七百年后', 'Life Goes On', '太阳照常升起', '不来也不去', '沙龙', '无人之境', '大人', '一丝不挂', '陀飞轮', '心腹', '味之素', '主旋律', '告别娑婆', '斯德哥尔摩情人', '任我行', '远在咫尺', '失忆蝴蝶', '床头床尾', '阿猫阿狗', '老细我撇先', '无条件', '人生马拉松', '黑洞', '心烧', '喜欢一个人', '万圣节的一个传说', '起点·终站', '一个灵魂的独白', '梦的可能', '8:15pm (序)', '破坏王', '海里睡人', '渐渐', '敬菸', '蠢', '疯狂的朋友', '我们万岁', '龙舌兰', '心之科学', '与你常在', '可一可再', '保重 (国)', '破坏王 (Instrumental)', '尘大师', '人啊人', '焦焦焦', '社交恐惧癌', '空城记', '是但求其爱', '盲婚哑嫁', '致明日的舞', '马利奥派对 (Live)', '我们万岁 (Live)', '社交恐惧癌 (Live)', '是但求其爱 (Live)', '一滴眼泪', '拜访', '爱到疯', '永远都天明', '情深怎么办', '我怎么可以哭', '学会爱', 'Style', '二个人的夜晚', '感情约', '预感', '酝酿', '摊开双手', '换季', '爱的傀儡', '感动', '我终于放开了他', '好聚好散', '宠爱', 'LA\'MOUR', 'TAIPEI CITY', '预感', '婚礼的祝福', '拔河', '我的开始在这里', '转机', 'My Girl', '掏空', '伤心证明书', '1个2个3个4个', 'Just Between The Two Of Us', '存在', 'Good Times', 'K歌之王(国语版)', '爱是怀疑(国语版)', '不如这样(国语版)', '低等动物(国语版)', '没有你(国语版)', '全世界失眠(国语版)', '我也不会那样做(国语版)', '冤家(国语版)', 'Special Thanks To 1', 'Special Thanks To 2', 'Special Thanks To 3', '人造卫星', '你会不会', '你的背包', '想哭', '没有手机的日子', '狂人日记', '男人的错', '谢谢侬', '跳蚤市场', '故事', '阿怪', '我们都寂寞', '兄妹', '十年', '要你的', '世界', '谢谢', '寂寞让你更快乐', '不睡', 'Last Order', '不能再等待', '对不起 谢谢', 'Hippie', '不然你要我怎么样', '不睡', '一夜销魂', '浮城', '早开的长途班', '听听 (粤)', '人神斗 (粤)', '烟味', '淘汰', '快乐男生', '红玫瑰', '月黑风高', '爱情转移', '好久不见', '爱是一本书', '第一个雅皮士', '白色球鞋', '月球上的人 (粤语) (Bonus Track)', '路...一直都在', '不要说话', '七', '倒带人生', 'Aren\'t you glad?', '土星环', '漂亮小姐', '独居动物', '臭美', '然后怎样', '在你身边', '这样的一个麻烦', '多少', 'Nothing Ever Happened', '你为什么哭了呢', '谋情害命', '我甲你', '心的距离', '床头灯', '给你', '从何说起', '孤独患者', '哎呀咿呀', '看穿', '吟游诗人', '张氏情歌', 'Baby Song', '听一千遍后', '内疚', '还要不要走', '积木', '神奇化妆师', 'Muffin Man', '米 (Rice)', '娱乐天空', '四季圈', '愚人快乐', '不如承诺来的简单', '阴天快乐', '闪 (Shine)', '光辉岁月', '可以了', '海胆', '谁来剪月光', '放', '收心操', '海胆', '谁来剪月光', '床上的黑洞', '右上角', '之外', '傅科摆', '零下几分钟', '披风', '低调', '人车志', '最佳损友', '暴殄天物', '落花流水', '大得太快', '想听', '终于一百日', '新生活', '游移的伤口', '地狱咒', '天一半，地一半', '回绝', '美满人生', '原来这里没有你', '天网', 'King Kong', 'Lonely', '歌·颂', '后台', '幸福摩天轮', '时光倒流二十年', '圣诞结', 'Shall We Talk (国)', '寂寞让你更快乐'] },
     ]
   },
   {
     id: '邓紫棋',
     name: '邓紫棋',
     albums: [
-      { name: '作品集', year: 0, songs: ['All About U', 'Game Over', '想讲你知', 'A.I.N.Y.（爱你）', 'Mascara（烟熏妆）', '我不懂爱', '塞纳河', '意式恋爱', 'G.E.M.（Get Everybody Moving）', 'Where Did You Go 2.0 (Remix)', 'Mascara (Glossy Version)', '食烟饮酒讲粗口', '写不完的温柔', '爱现在的我', '回忆的沙漏', 'One Button', 'Good to be Bad', 'Get Over You', '美好的旧时光', '寂寞星球的玫瑰', 'The Voice Within', '我的秘密', '末日', 'Twinkle', 'Say It Loud', 'What Have U Done', '下一秒', 'Someday I’ll Fly', '泡沫', '潜意式的残酷', 'Oh Boy', 'After Tonight', '失真', '不存在的存在', '奇迹', '多远都要在一起', '再见', '新的心跳', '盲点', '来自天堂的魔鬼', '一路逆风', '单行的轨道', '于是', '瞬间', '查克靠近', '摩天动物园', 'Fly Away', '透明', '很久以后', 'Walk on Water', '萤火', '灰狼', '差不多姑娘', '好想好想你', '别勉强', '多美丽', '句号', '依然睡公主', '少年与海', 'HELL', '只有我和你的地方', '你不是第一个离开的人', '不想回家', '冰河时代', '受难曲', 'GLORIA', '老人与海', 'Find You', '离心力', '让世界暂停一分钟', '夜的尽头', '天空没有极限', '等一个他', 'Where Did U Go', '回忆的沙漏', '爱现在的我', '睡公主', '倒数', '错过不错', '另一个童话', '那一夜', '毒苹果', '突然之间', '岩石里的花', 'WHY', '睡皇后', 'A.I.N.Y.', 'Someday I’ll Fly', 'All About U', '泡沫', '你把我灌醉', 'Where Did U Go', 'Get Over You', 'Good to be Bad', '情人', '唯一', '李香兰', '你成为了谁的幸福', '海阔天空'] },
+      { name: '作品集', year: 0, songs: ['All About U', 'Game Over', '想讲你知', 'A.I.N.Y.（爱你）', 'Mascara（烟熏妆）', '我不懂爱', '塞纳河', '意式恋爱', 'G.E.M.（Get Everybody Moving）', 'Where Did You Go 2.0 (Remix)', 'Mascara (Glossy Version)', '食烟饮酒讲粗口', '写不完的温柔', '爱现在的我', '回忆的沙漏', 'One Button', 'Good to be Bad', 'Get Over You', '美好的旧时光', '寂寞星球的玫瑰', 'The Voice Within', '我的秘密', '末日', 'Twinkle', 'Say It Loud', 'What Have U Done', '下一秒', 'Someday I\'ll Fly', '泡沫', '潜意式的残酷', 'Oh Boy', 'After Tonight', '失真', '不存在的存在', '奇迹', '多远都要在一起', '再见', '新的心跳', '盲点', '来自天堂的魔鬼', '一路逆风', '单行的轨道', '于是', '瞬间', '查克靠近', '摩天动物园', 'Fly Away', '透明', '很久以后', 'Walk on Water', '萤火', '灰狼', '差不多姑娘', '好想好想你', '别勉强', '多美丽', '句号', '依然睡公主', '少年与海', 'HELL', '只有我和你的地方', '你不是第一个离开的人', '不想回家', '冰河时代', '受难曲', 'GLORIA', '老人与海', 'Find You', '离心力', '让世界暂停一分钟', '夜的尽头', '天空没有极限', '等一个他', 'Where Did U Go', '回忆的沙漏', '爱现在的我', '睡公主', '倒数', '错过不错', '另一个童话', '那一夜', '毒苹果', '突然之间', '岩石里的花', 'WHY', '睡皇后', 'A.I.N.Y.', 'Someday I\'ll Fly', 'All About U', '泡沫', '你把我灌醉', 'Where Did U Go', 'Get Over You', 'Good to be Bad', '情人', '唯一', '李香兰', '你成为了谁的幸福', '海阔天空'] },
     ]
   },
   {
@@ -30,7 +30,7 @@ const ARTISTS_DB = [
       { name: '专辑1', year: 0, songs: ['就是我', '会读书', '翅膀', '星球', '冻结', '压力', '女儿家', '星空下的吻', '让我心动的人', '会有那么一天', '不懂'] },
       { name: '专辑2', year: 0, songs: ['一开始', '第二天堂', '子弹列车', '起床了', '豆浆油条', '江南', '害怕', '天使心', '森林浴', '精灵', '相信无限', '美人鱼', '距离', '未完成', 'endless road'] },
       { name: '专辑3', year: 0, songs: ['一千年以前', '木乃伊', '编号89757', '莎士比亚的天份', '突然累了', '明天', '简简单单', '无尽的思念', '盗', '听不懂没关系', '来不及了', '一千年以后'] },
-      { name: '专辑4', year: 0, songs: ['只对你说', '曹操', '熟能生巧', '波间带', '原来', '不死之身', '爱情Yogurt', '进化论', 'Now That She’s Gone', '你要的不是我'] },
+      { name: '专辑4', year: 0, songs: ['只对你说', '曹操', '熟能生巧', '波间带', '原来', '不死之身', '爱情Yogurt', '进化论', 'Now That She\'s Gone', '你要的不是我'] },
       { name: '专辑5', year: 0, songs: ['独白', '杀手', '杀手@续', '西界', '无聊', '单挑', 'K-O', '男人·小女孩', 'L-O-V-E', '发现爱', '不流泪的机场', 'Baby Baby', '自由不变'] },
       { name: '专辑6', year: 0, songs: ['SIXOLOGY', '不潮不用花钱', '小酒窝', '黑武士', '醉赤壁', '由你选择', 'ALWAYS ONLINE', '街道', '主角', '我还想她', '点一把火炬', '期待爱', 'CRIES IN A DISTANCE'] },
       { name: '专辑7', year: 0, songs: ['X', '第几个100天', '加油', '无法克制', '背对背拥抱', '跟屁虫', '一个又一个', '爱不会绝迹', '转动', '妈妈的娜鲁娃', '加油（中国版）', '表达爱'] },
@@ -72,6 +72,13 @@ const ARTISTS_DB = [
       { name: '专辑15', year: 0, songs: ['最伟大的作品', '还在流浪', '说好不哭', '红颜如霜', '不爱我就拉倒', 'Mojito', '错过的烟火', '粉色海洋', '等你下课', '倒影', '我是如此相信'] },
     ]
   },
+  {
+    id: '王俊凯',
+    name: '王俊凯',
+    albums: [
+      { name: '作品集', year: 0, songs: ['无人乐园', 'Steal The Moon', 'I Love This Life', '从前', '真相', '无声潮汐', '幻梦', 'Stay', '疑疑疑', '大概', '如期', '破晓', 'Badi Badi', '下一天', '你会找到我', '我的', '醒着', '摩天轮的思念', '不完美小孩', '树读', '小棉袄', '焕蓝・未来', '冷暖', '雾中列车', 'Ain\'t Got No Love', '流星', '心引力', '生长', 'Beautiful', 'Champion My Way'] },
+    ]
+  },
 ];
 
 </script>
@@ -96,7 +103,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .app-container { max-width: 900px; margin: 0 auto; padding: 20px 24px 60px; }
-.navbar { display:flex; align-items:center; justify-content:center; padding:20px 0 8px; gap:10px; }
+.navbar { display:flex; align-items:center; justify-content:center; padding:20px 0 8px; gap:10px; position:relative; }
 .navbar .logo { font-size:32px; }
 .navbar h1 { font-size:26px; font-weight:800; background:linear-gradient(135deg,var(--accent),#e040fb); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:2px; }
 
@@ -104,18 +111,29 @@ body {
 .screen.active { display:block; animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 
-/* Search */
+/* ── Top bar nav ── */
+.battle-top-bar { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.btn-back-lobby { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; background:#fff; border:2px solid var(--border); border-radius:25px; font-size:14px; color:var(--text-secondary); cursor:pointer; transition:var(--transition); white-space:nowrap; }
+.btn-back-lobby:hover { border-color:var(--accent); color:var(--accent); background:#faf5ff; }
+.btn-back-lobby .icon { font-size:16px; }
+
+/* ── Search ── */
 .search-wrapper { margin:32px 0 24px; }
 .search-input { width:100%; padding:16px 20px; font-size:17px; border:2px solid var(--border); border-radius:50px; background:var(--card-bg); outline:none; box-shadow:var(--shadow); transition:var(--transition); }
 .search-input:focus { border-color:var(--accent); box-shadow:0 4px 24px rgba(124,77,255,0.15); }
 .stats-bar { text-align:center; font-size:13px; color:var(--text-secondary); margin-bottom:16px; }
-.artists-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px; margin-top:8px; }
-.artist-card { background:var(--card-bg); border-radius:var(--radius-sm); padding:16px 14px; text-align:center; cursor:pointer; box-shadow:var(--shadow); transition:var(--transition); border:2px solid transparent; }
-.artist-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-lg); border-color:var(--accent-light); }
-.artist-card .artist-name { font-size:16px; font-weight:700; }
-.artist-card .artist-meta { font-size:12px; color:var(--text-secondary); margin-top:3px; }
 
-/* Battle */
+/* ── Artist poster cards ── */
+.artists-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(155px,1fr)); gap:14px; margin-top:8px; }
+.artist-card { background:var(--card-bg); border-radius:var(--radius); padding:0; text-align:center; cursor:pointer; box-shadow:var(--shadow); transition:var(--transition); border:2px solid transparent; overflow:hidden; }
+.artist-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-lg); border-color:var(--accent-light); }
+.artist-poster { width:100%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; background:#e8e8e8; }
+.artist-poster img { width:100%; height:100%; object-fit:cover; display:block; }
+.artist-poster-fallback { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:68px; font-weight:900; color:#fff; text-shadow:0 3px 12px rgba(0,0,0,0.12); user-select:none; }
+.artist-card .artist-name { font-size:15px; font-weight:700; padding:14px 14px 2px; color:var(--text); }
+.artist-card .artist-meta { font-size:11px; color:var(--text-secondary); padding:2px 14px 14px; }
+
+/* ── Battle ── */
 .battle-header { text-align:center; margin-bottom:8px; }
 .battle-artist { font-size:15px; color:var(--text-secondary); margin-bottom:4px; }
 .battle-artist strong { color:var(--accent); }
@@ -141,10 +159,16 @@ body {
 .vs-divider { display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 .vs-circle { width:56px; height:56px; background:var(--card-bg); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow); font-weight:900; font-size:22px; color:var(--accent); }
 
-.btn-reset { display:block; margin:32px auto 0; padding:10px 28px; border:2px solid var(--danger); border-radius:25px; background:transparent; color:var(--danger); cursor:pointer; font-size:14px; transition:var(--transition); }
+/* ── Battle actions row ── */
+.battle-actions { display:flex; align-items:center; justify-content:center; gap:16px; margin-top:28px; flex-wrap:wrap; }
+.btn-prev { display:inline-flex; align-items:center; gap:4px; padding:10px 22px; background:transparent; color:var(--text-secondary); border:2px solid var(--border); border-radius:25px; font-size:14px; cursor:pointer; transition:var(--transition); }
+.btn-prev:hover { border-color:var(--accent); color:var(--accent); }
+.btn-prev:disabled { opacity:0.35; cursor:not-allowed; pointer-events:none; }
+.btn-prev:disabled:hover { border-color:var(--border); color:var(--text-secondary); }
+.btn-reset { display:inline-flex; align-items:center; gap:4px; padding:10px 22px; border:2px solid var(--danger); border-radius:25px; background:transparent; color:var(--danger); cursor:pointer; font-size:14px; transition:var(--transition); }
 .btn-reset:hover { background:var(--danger); color:#fff; }
 
-/* Result */
+/* ── Result ── */
 .result-header { text-align:center; margin-bottom:28px; }
 .champion-crown { font-size:64px; animation:bounce 0.8s ease infinite alternate; }
 @keyframes bounce { from{transform:translateY(0)} to{transform:translateY(-12px)} }
@@ -171,7 +195,7 @@ body {
 .btn-new-battle { display:block; margin:16px auto; padding:12px 32px; background:transparent; color:var(--accent); border:2px solid var(--accent); border-radius:50px; font-size:15px; font-weight:600; cursor:pointer; transition:var(--transition); }
 .btn-new-battle:hover { background:var(--accent); color:#fff; }
 
-/* Modal */
+/* ── Modal ── */
 .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center; }
 .modal-overlay.active { display:flex; }
 .modal-box { background:var(--card-bg); border-radius:var(--radius); padding:32px 28px; max-width:400px; width:90%; text-align:center; box-shadow:var(--shadow-lg); }
@@ -183,7 +207,7 @@ body {
 .btn-secondary { padding:10px 28px; background:transparent; color:var(--text-secondary); border:2px solid var(--border); border-radius:25px; font-size:15px; cursor:pointer; transition:var(--transition); }
 .btn-secondary:hover { border-color:var(--accent); color:var(--accent); }
 
-/* Confetti */
+/* ── Confetti ── */
 .confetti-container { position:fixed; inset:0; pointer-events:none; z-index:999; }
 .confetti-piece { position:absolute; animation:confetti-fall 2.5s ease-out forwards; }
 @keyframes confetti-fall { 0%{transform:translateY(-100px) rotate(0deg);opacity:1} 100%{transform:translateY(105vh) rotate(720deg);opacity:0} }
@@ -200,6 +224,9 @@ body {
   .bracket-tree { gap:8px; }
   .bracket-round { min-width:80px; }
   .bracket-match { min-width:72px; font-size:10px; }
+  .battle-actions { gap:10px; }
+  .btn-prev, .btn-reset { padding:8px 16px; font-size:13px; }
+  .artist-poster-fallback { font-size:52px; }
 }
 </style>
 </head>
@@ -208,7 +235,7 @@ body {
 <div class="app-container" id="appRoot">
   <nav class="navbar"><span class="logo">🎵</span><h1>极限二选一</h1></nav>
 
-  <!-- 搜索页 -->
+  <!-- ── 搜索页 ── -->
   <div class="screen active" id="searchScreen">
     <div class="search-wrapper">
       <input type="text" class="search-input" id="searchInput" placeholder="🔍  搜索你喜欢的歌手...">
@@ -217,8 +244,12 @@ body {
     <div class="artists-grid" id="artistsGrid"></div>
   </div>
 
-  <!-- 对战页 -->
+  <!-- ── 对战页 ── -->
   <div class="screen" id="battleScreen">
+    <div class="battle-top-bar">
+      <button class="btn-back-lobby" id="btnBackLobby"><span class="icon">🏠</span> 返回大厅</button>
+      <div style="flex:1"></div>
+    </div>
     <div class="battle-header">
       <div class="battle-artist">🎤 你选择了 <strong id="battleArtistName"></strong></div>
       <div class="battle-song-count" id="battleSongCount"></div>
@@ -226,10 +257,13 @@ body {
     </div>
     <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar" style="width:0%"></div></div>
     <div class="pk-arena" id="pkArena"></div>
-    <button class="btn-reset" id="btnReset">🔄 重新开始</button>
+    <div class="battle-actions">
+      <button class="btn-prev" id="btnPrev" disabled>⬅ 上一题</button>
+      <button class="btn-reset" id="btnReset">🔄 重新开始</button>
+    </div>
   </div>
 
-  <!-- 结果页 -->
+  <!-- ── 结果页 ── -->
   <div class="screen" id="resultScreen">
     <div class="result-header">
       <div class="champion-crown">👑</div>
@@ -247,7 +281,7 @@ body {
   </div>
 </div>
 
-<!-- 恢复弹窗 -->
+<!-- ── 恢复弹窗 ── -->
 <div class="modal-overlay" id="resumeModal">
   <div class="modal-box">
     <h3>📌 发现未完成的进度</h3>
@@ -264,21 +298,42 @@ body {
 
 <script>
 /* ===================================================================
-   极限二选一 V4 — 全歌曲平等参与 · 单败淘汰+自然轮空 · 52位歌手
+   极限二选一 V5 — 全歌曲平等参与 · 单败淘汰+自然轮空 · 歌手海报 · 回退支持
    =================================================================== */
 
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
-const STORAGE_KEY = 'xianji_erxuanyi_v4_progress';
+const STORAGE_KEY = 'xianji_erxuanyi_v5_progress';
+
+// ── 歌手照片路径 ──
+function getPhotoPath(name) {
+  return '图片/' + name + '.jpg';
+}
+// ── 歌手海报配色（图片加载失败时回退） ──
+const POSTER_COLORS = {
+  '陈奕迅': ['#e74c3c', '#c0392b'],
+  '邓紫棋': ['#9b59b6', '#7d3c98'],
+  '林俊杰': ['#3498db', '#2471a3'],
+  '薛之谦': ['#1abc9c', '#148f77'],
+  '周杰伦': ['#f39c12', '#d68910'],
+  '王俊凯': ['#42a5f5', '#1e88e5'],
+};
+const DEFAULT_POSTER_COLORS = ['#7c4dff', '#5e35b1'];
+
+function getPosterGradient(name) {
+  const c = POSTER_COLORS[name] || DEFAULT_POSTER_COLORS;
+  return 'linear-gradient(135deg, ' + c[0] + ' 0%, ' + c[1] + ' 100%)';
+}
 
 let appState = {
   currentScreen: 'search',
   selectedArtist: null,
   bracket: null,
-  isTransitioning: false
+  isTransitioning: false,
+  bracketHistory: []        // 快照栈 —— 每次选择前保存一份完整副本
 };
 
-// ==================== 数据 ====================
+// ════════════════════════ 数据 ════════════════════════
 function getArtistSongs(artist) {
   const songs = [];
   artist.albums.forEach(album => {
@@ -289,13 +344,12 @@ function getArtistSongs(artist) {
   return songs;
 }
 
-// ==================== 锦标赛算法：全歌曲单败淘汰 ====================
+// ════════════════════════ 锦标赛算法 ════════════════════════
 function buildBracket(songs) {
   const shuffled = [...songs].sort(() => Math.random() - 0.5);
   const allRounds = [];
   let currentSongs = shuffled;
 
-  // 持续配对直到只剩1首冠军
   while (currentSongs.length > 1) {
     const n = currentSongs.length;
     const matchCount = Math.floor(n / 2);
@@ -325,10 +379,8 @@ function buildBracket(songs) {
       matches: matches
     });
 
-    // 准备下一轮：当前匹配的胜者 + 轮空者
     currentSongs = [];
     if (byeSong) currentSongs.push(byeSong);
-    // winners filled as user picks
   }
 
   return {
@@ -342,6 +394,7 @@ function buildBracket(songs) {
 
 function getCurrentMatch(bracket) {
   if (bracket.status === 'completed') return null;
+  // 按轮次顺序：必须完成当前轮所有对局才能进入下一轮
   for (const round of bracket.rounds) {
     for (const match of round.matches) {
       if (match.winnerId === null && !match.isBye) {
@@ -350,6 +403,18 @@ function getCurrentMatch(bracket) {
     }
   }
   return null;
+}
+
+function getCurrentRoundNumber(bracket) {
+  // 返回当前正在进行的是第几轮（第一个有未完成 match 的轮）
+  for (const round of bracket.rounds) {
+    for (const match of round.matches) {
+      if (match.winnerId === null && !match.isBye) {
+        return round.roundNumber;
+      }
+    }
+  }
+  return bracket.rounds.length; // 全部完成
 }
 
 function getOverallProgress(bracket) {
@@ -386,13 +451,11 @@ function processPick(bracket, matchId, winnerId) {
   const nextIdx = bracket.rounds.indexOf(pickedRound) + 1;
   if (nextIdx < bracket.rounds.length) {
     const nr = bracket.rounds[nextIdx];
-    // 配对胜者填入下一轮的空 match 槽位
     let wi = 0;
     for (const m of nr.matches) {
       if (!m.songA && wi < winners.length) { m.songA = winners[wi]; wi++; }
       if (!m.songB && wi < winners.length) { m.songB = winners[wi]; wi++; }
     }
-    // 如果下一轮所有 match 都填满了，检查是否有决赛冠军
     if (nextIdx === bracket.rounds.length - 1) {
       const fm = nr.matches[0];
       if (fm && fm.songA && fm.songB && fm.winnerId) {
@@ -401,7 +464,6 @@ function processPick(bracket, matchId, winnerId) {
       }
     }
   } else {
-    // 没有下一轮了
     bracket.status = 'completed';
     bracket.champion = winners[0] || null;
   }
@@ -412,12 +474,36 @@ function processPick(bracket, matchId, winnerId) {
 function serialize(b) { return JSON.parse(JSON.stringify(b)); }
 function deserialize(j) { return j; }
 
-// ==================== UI ====================
+// ════════════════════════ 快照 / 回退 ════════════════════════
+function saveBracketSnapshot() {
+  appState.bracketHistory.push(serialize(appState.bracket));
+}
+
+function undoLastPick() {
+  if (appState.bracketHistory.length === 0) return false;
+  appState.bracket = appState.bracketHistory.pop();
+  return true;
+}
+
+// ════════════════════════ UI ════════════════════════
 function showScreen(name) {
   $$('.screen').forEach(s => s.classList.remove('active'));
   const el = document.getElementById(name + 'Screen');
   if (el) el.classList.add('active');
   appState.currentScreen = name;
+}
+
+function goToLobby() {
+  if (appState.isTransitioning) return;
+  // 保存当前进度，回大厅时可能恢复
+  if (appState.bracket && appState.bracket.status === 'in_progress') {
+    saveProgress(appState.bracket);
+  }
+  appState.isTransitioning = false;
+  appState.bracketHistory = [];
+  showScreen('search');
+  renderArtists();
+  $('#searchInput').value = '';
 }
 
 function renderArtists(filter = '') {
@@ -428,7 +514,7 @@ function renderArtists(filter = '') {
   const stats = $('#statsBar');
 
   if (db.length === 0) {
-    stats.textContent = '⚠ 未加载到歌手数据，请检查 data/artists.js 是否存在且语法正确';
+    stats.textContent = '⚠ 未加载到歌手数据';
     grid.innerHTML = '';
     return;
   }
@@ -442,7 +528,17 @@ function renderArtists(filter = '') {
 
   grid.innerHTML = filtered.map(a => {
     const s = a.albums.reduce((sum, al) => sum + al.songs.length, 0);
-    return '<div class="artist-card" data-id="' + a.id + '"><div class="artist-name">' + a.name + '</div><div class="artist-meta">' + a.albums.length + '张专辑 · ' + s + '首歌</div></div>';
+    const nameChar = a.name.charAt(0);
+    const photoPath = getPhotoPath(a.name);
+    const gradient = getPosterGradient(a.name);
+    return '<div class="artist-card" data-id="' + a.id + '">' +
+      '<div class="artist-poster" style="background:' + gradient + ';">' +
+        '<img src="' + photoPath + '" alt="' + a.name + '" loading="lazy" onerror="this.style.display=\'none\'">' +
+        '<div class="artist-poster-fallback">' + nameChar + '</div>' +
+      '</div>' +
+      '<div class="artist-name">' + a.name + '</div>' +
+      '<div class="artist-meta">' + a.albums.length + '专辑 · ' + s + '首</div>' +
+    '</div>';
   }).join('');
 
   grid.querySelectorAll('.artist-card').forEach(card => {
@@ -454,6 +550,9 @@ function startBattle(artistId, resumeBracket = null) {
   const db = typeof ARTISTS_DB !== 'undefined' ? ARTISTS_DB : [];
   const artist = db.find(a => a.id === artistId);
   if (!artist) return;
+
+  appState.isTransitioning = false;
+  appState.bracketHistory = [];
   appState.selectedArtist = artist;
 
   if (resumeBracket) {
@@ -489,13 +588,22 @@ function renderBattle() {
   indicator.textContent = round.label + ' · 第 ' + (match.matchIndex + 1) + ' / ' + round.matchCount + ' 场';
   indicator.className = 'round-indicator' + (isFinal ? ' final' : '');
 
-  // 显示本轮轮空信息
   let byeInfo = '';
   if (round.hasBye && round.byeSong) {
     byeInfo = '<div style="text-align:center;margin-bottom:12px;font-size:13px;color:var(--bye-color);">🟢 <strong>' + round.byeSong.name + '</strong> 本轮轮空，直接晋级</div>';
   }
 
   $('#progressBar').style.width = progress.pct + '%';
+
+  // ── 更新 "上一题" 按钮状态 ──
+  const btnPrev = $('#btnPrev');
+  btnPrev.disabled = appState.bracketHistory.length === 0;
+  // tooltip 提示
+  if (appState.bracketHistory.length > 0) {
+    btnPrev.title = '可回退 ' + appState.bracketHistory.length + ' 步';
+  } else {
+    btnPrev.title = '';
+  }
 
   const songA = match.songA, songB = match.songB;
   const card = (song, side) =>
@@ -519,6 +627,9 @@ function handlePick(match, chosenSong) {
   if (appState.isTransitioning) return;
   appState.isTransitioning = true;
 
+  // ★ 选择前先保存快照，以便 "上一题" 回退
+  saveBracketSnapshot();
+
   const cardA = $('#cardA'), cardB = $('#cardB');
   const chosen = chosenSong.id === match.songA.id ? cardA : cardB;
   chosen.classList.add('chosen');
@@ -526,8 +637,26 @@ function handlePick(match, chosenSong) {
 
   setTimeout(() => {
     appState.bracket = processPick(appState.bracket, match.id, chosenSong.id);
+
+    // 检测是否进入了新一轮 —— 如果是，清空回退历史
+    // （用户不能跨轮回退，只能在当前轮内回退）
+    const prevHistoryLen = appState.bracketHistory.length;
+    if (prevHistoryLen > 0) {
+      // 如果所有快照对应的轮次与当前轮不同，说明进入了新一轮，清空历史
+      const curRound = getCurrentRoundNumber(appState.bracket);
+      const lastSnapshot = appState.bracketHistory[appState.bracketHistory.length - 1];
+      const lastRound = getCurrentRoundNumber(lastSnapshot);
+      if (lastRound !== curRound) {
+        appState.bracketHistory = [];
+      }
+    }
+
     if (appState.bracket.status === 'completed') {
-      saveProgress(null); showConfetti(); showResult();
+      appState.isTransitioning = false;
+      appState.bracketHistory = [];
+      saveProgress(null);
+      showConfetti();
+      showResult();
     } else {
       saveProgress(appState.bracket);
       appState.isTransitioning = false;
@@ -547,11 +676,9 @@ function showResult() {
     $('#championStats').innerHTML = '从 <em>' + b.totalSongs + '</em> 首歌曲中脱颖而出 · 共 <em>' + b.rounds.length + '</em> 轮淘汰';
   }
 
-  // 对阵树
   let html = '';
   b.rounds.forEach(round => {
     html += '<div class="bracket-round"><div class="bracket-round-label">' + round.label + '</div>';
-    // 轮空晋级
     if (round.hasBye && round.byeSong) {
       html += '<div class="bracket-match bye-match"><div class="match-song bye">🟢 轮空: ' + round.byeSong.name + '</div></div>';
     }
@@ -570,7 +697,7 @@ function showResult() {
   $('#bracketTree').innerHTML = html;
 }
 
-// ==================== 持久化 ====================
+// ════════════════════════ 持久化 ════════════════════════
 function saveProgress(b) { if (b) localStorage.setItem(STORAGE_KEY, JSON.stringify(serialize(b))); else localStorage.removeItem(STORAGE_KEY); }
 function loadProgress() { try { const r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : null; } catch(e) { return null; } }
 function checkResume() {
@@ -587,7 +714,7 @@ function checkResume() {
   }
 }
 
-// ==================== 庆祝 & 导出 ====================
+// ════════════════════════ 庆祝 & 导出 ════════════════════════
 function showConfetti() {
   const c = $('#confettiContainer');
   const colors = ['#7c4dff','#e040fb','#f9a825','#ff5252','#00e676','#40c4ff','#ff6e40'];
@@ -602,7 +729,6 @@ function showConfetti() {
 async function exportBracket() {
   const loading = $('#loadingScreen'); loading.classList.add('active');
   try {
-    // 按需动态加载 html2canvas，避免 CDN 阻塞页面首次加载
     if (typeof html2canvas === 'undefined') {
       await new Promise((resolve, reject) => {
         const script = document.createElement('script');
@@ -623,15 +749,40 @@ async function exportBracket() {
 
 function escapeHtml(s) { const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
 
-// ==================== 事件绑定 ====================
+// ════════════════════════ 事件绑定 ════════════════════════
 $('#searchInput').addEventListener('input', e => renderArtists(e.target.value));
-$('#btnReset').addEventListener('click', ()=>{
-  if(confirm('确定重新开始？当前进度将丢失。')){ saveProgress(null); startBattle(appState.selectedArtist.id); }
+
+// 返回大厅
+$('#btnBackLobby').addEventListener('click', () => {
+  if (appState.isTransitioning) return;
+  if (appState.bracket && appState.bracket.status === 'in_progress') {
+    if (!confirm('当前对战进度将保存，确定返回大厅吗？')) return;
+  }
+  goToLobby();
 });
+
+// 上一题
+$('#btnPrev').addEventListener('click', () => {
+  if (appState.isTransitioning) return;
+  if (!undoLastPick()) return;
+  appState.isTransitioning = false;
+  saveProgress(appState.bracket);
+  renderBattle();
+});
+
+// 重新开始
+$('#btnReset').addEventListener('click', ()=>{
+  if(confirm('确定重新开始？当前进度将丢失。')) {
+    appState.bracketHistory = [];
+    saveProgress(null);
+    startBattle(appState.selectedArtist.id);
+  }
+});
+
 $('#btnResume').addEventListener('click', ()=>{ $('#resumeModal').classList.remove('active'); const s=loadProgress(); if(s) startBattle(s.artistId, s); });
 $('#btnDiscard').addEventListener('click', ()=>{ $('#resumeModal').classList.remove('active'); saveProgress(null); });
 $('#btnExport').addEventListener('click', exportBracket);
-$('#btnNewBattle').addEventListener('click', ()=>{ saveProgress(null); showScreen('search'); renderArtists(); $('#searchInput').value=''; });
+$('#btnNewBattle').addEventListener('click', ()=>{ appState.bracketHistory=[]; saveProgress(null); showScreen('search'); renderArtists(); $('#searchInput').value=''; });
 
 function init() {
   renderArtists();
