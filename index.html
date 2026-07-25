@@ -177,17 +177,21 @@ body {
 .champion-stats { font-size:13px; color:var(--text-secondary); }
 .champion-stats em { color:var(--accent); font-weight:600; font-style:normal; }
 .bracket-container { background:var(--card-bg); border-radius:var(--radius); padding:32px 24px; box-shadow:var(--shadow); overflow-x:auto; margin:24px 0; }
-.bracket-title { text-align:center; font-size:18px; font-weight:700; margin-bottom:20px; }
-.bracket-tree { display:flex; gap:24px; min-width:fit-content; justify-content:center; }
-.bracket-round { display:flex; flex-direction:column; justify-content:space-around; gap:5px; min-width:115px; }
-.bracket-round-label { text-align:center; font-size:11px; font-weight:700; color:var(--accent); margin-bottom:4px; letter-spacing:1px; white-space:nowrap; }
-.bracket-match { background:#f8f9fa; border-radius:var(--radius-sm); padding:6px 8px; font-size:11px; border:2px solid var(--border); }
-.bracket-match .match-song { padding:1px 0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.bracket-match .match-song.winner { font-weight:700; color:var(--accent); }
-.bracket-match .match-song.champion { font-weight:700; color:var(--gold); }
-.bracket-match .match-song.bye { color:var(--bye-color); font-style:italic; }
-.bracket-match.bye-match { border-color:var(--bye-color); background:#e8f5e9; }
-.bracket-match.champion-match { border-color:var(--gold); background:var(--gold-light); }
+.bracket-title { text-align:center; font-size:18px; font-weight:700; margin-bottom:24px; }
+.bracket-tree { display:flex; gap:28px; min-width:fit-content; justify-content:center; align-items:stretch; }
+.bracket-col { display:flex; flex-direction:column; justify-content:center; min-width:130px; }
+.bracket-col-title { text-align:center; font-size:12px; font-weight:700; color:var(--accent); letter-spacing:2px; margin-bottom:10px; white-space:nowrap; }
+.bracket-col-matches { display:flex; flex-direction:column; justify-content:space-around; flex:1; gap:8px; }
+.bracket-match { background:#f5f6fa; border-radius:10px; border:2px solid #e8eaf0; border-left:4px solid #d0d5e0; display:flex; flex-direction:column; overflow:hidden; }
+.bracket-match.winner-match { border-color:var(--accent-light); border-left-color:var(--accent); background:#faf5ff; }
+.bracket-match.champion-match { border-color:var(--gold); border-left-color:var(--gold); background:var(--gold-light); box-shadow:0 3px 16px rgba(249,168,37,0.25); }
+.bracket-match .bracket-song { padding:8px 12px; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-align:center; line-height:1.4; }
+.bracket-match .bracket-song:first-child { border-bottom:1px solid #e8eaf0; }
+.bracket-match.winner-match .bracket-song:first-child { border-bottom-color:var(--accent-light); }
+.bracket-match.champion-match .bracket-song:first-child { border-bottom-color:rgba(249,168,37,0.3); }
+.bracket-match .bracket-song.winner { font-weight:700; color:var(--accent); }
+.bracket-match .bracket-song.champion { font-weight:800; color:#e65100; }
+.bracket-match .bracket-song.bye { color:var(--bye-color); font-style:italic; }
 
 .btn-export { display:block; margin:24px auto; padding:14px 40px; background:var(--accent); color:#fff; border:none; border-radius:50px; font-size:16px; font-weight:700; cursor:pointer; box-shadow:var(--shadow); transition:var(--transition); }
 .btn-export:hover { transform:translateY(-2px); box-shadow:var(--shadow-lg); background:#6a3de8; }
@@ -221,8 +225,8 @@ body {
   .song-card { max-width:100%; min-height:120px; padding:24px 18px; }
   .song-card .song-name { font-size:18px; }
   .bracket-tree { gap:8px; }
-  .bracket-round { min-width:80px; }
-  .bracket-match { min-width:72px; font-size:10px; }
+  .bracket-col { min-width:80px; }
+  .bracket-match .bracket-song { font-size:10px; padding:4px 6px; }
   .battle-actions { gap:10px; }
   .btn-prev, .btn-reset { padding:8px 16px; font-size:13px; }
 }
@@ -677,22 +681,34 @@ function showResult() {
   }
 
   let html = '';
-  b.rounds.forEach(round => {
-    html += '<div class="bracket-round"><div class="bracket-round-label">' + round.label + '</div>';
+  b.rounds.forEach((round, roundIdx) => {
+    const isLastRound = roundIdx === b.rounds.length - 1;
+    html += '<div class="bracket-col">';
+    html += '<div class="bracket-col-title">' + round.label + '</div>';
+    html += '<div class="bracket-col-matches">';
+    // 轮空歌曲
     if (round.hasBye && round.byeSong) {
-      html += '<div class="bracket-match bye-match"><div class="match-song bye">🟢 轮空: ' + round.byeSong.name + '</div></div>';
+      html += '<div class="bracket-match" style="border-color:var(--bye-color);background:#e8f5e9;">';
+      html += '<div class="bracket-song bye">🟢 ' + round.byeSong.name + '</div>';
+      html += '<div class="bracket-song bye">轮空晋级</div>';
+      html += '</div>';
     }
     round.matches.forEach(match => {
       if (!match.songA || !match.songB) return;
-      const aW = match.winnerId && match.winnerId === match.songA.id;
-      const bW = match.winnerId && match.winnerId === match.songB.id;
-      const isFinal = round.totalSongs === 2;
-      html += '<div class="bracket-match' + (isFinal && match.winnerId ? ' champion-match' : '') + '">';
-      html += '<div class="match-song' + (aW?' winner':'') + (isFinal&&aW?' champion':'') + '">' + (aW?'🏆 ':'') + match.songA.name + '</div>';
-      html += '<div class="match-song' + (bW?' winner':'') + (isFinal&&bW?' champion':'') + '">' + (bW?'🏆 ':'') + match.songB.name + '</div>';
+      const aW = match.winnerId === match.songA.id;
+      const bW = match.winnerId === match.songB.id;
+      const hasWinner = match.winnerId !== null;
+      const isChampion = isLastRound && hasWinner;
+      html += '<div class="bracket-match' +
+        (isChampion ? ' champion-match' : '') +
+        (hasWinner && !isChampion ? ' winner-match' : '') + '">';
+      html += '<div class="bracket-song' + (aW ? ' winner' : '') + (isChampion && aW ? ' champion' : '') + '">' +
+        (aW ? '🏆 ' : '') + match.songA.name + '</div>';
+      html += '<div class="bracket-song' + (bW ? ' winner' : '') + (isChampion && bW ? ' champion' : '') + '">' +
+        (bW ? '🏆 ' : '') + match.songB.name + '</div>';
       html += '</div>';
     });
-    html += '</div>';
+    html += '</div></div>';
   });
   $('#bracketTree').innerHTML = html;
 }
