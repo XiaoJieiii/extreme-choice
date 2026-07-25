@@ -129,7 +129,6 @@ body {
 .artist-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-lg); border-color:var(--accent-light); }
 .artist-poster { width:100%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; background:#e8e8e8; }
 .artist-poster img { width:100%; height:100%; object-fit:cover; display:block; }
-.artist-poster-fallback { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:68px; font-weight:900; color:#fff; text-shadow:0 3px 12px rgba(0,0,0,0.12); user-select:none; }
 .artist-card .artist-name { font-size:15px; font-weight:700; padding:14px 14px 2px; color:var(--text); }
 .artist-card .artist-meta { font-size:11px; color:var(--text-secondary); padding:2px 14px 14px; }
 
@@ -226,7 +225,6 @@ body {
   .bracket-match { min-width:72px; font-size:10px; }
   .battle-actions { gap:10px; }
   .btn-prev, .btn-reset { padding:8px 16px; font-size:13px; }
-  .artist-poster-fallback { font-size:52px; }
 }
 </style>
 </head>
@@ -528,13 +526,11 @@ function renderArtists(filter = '') {
 
   grid.innerHTML = filtered.map(a => {
     const s = a.albums.reduce((sum, al) => sum + al.songs.length, 0);
-    const nameChar = a.name.charAt(0);
     const photoPath = getPhotoPath(a.name);
     const gradient = getPosterGradient(a.name);
     return '<div class="artist-card" data-id="' + a.id + '">' +
       '<div class="artist-poster" style="background:' + gradient + ';">' +
-        '<img src="' + photoPath + '" alt="' + a.name + '" loading="lazy" onerror="this.style.display=\'none\'">' +
-        '<div class="artist-poster-fallback">' + nameChar + '</div>' +
+        '<img src="' + photoPath + '" alt="' + a.name + '" loading="lazy">' +
       '</div>' +
       '<div class="artist-name">' + a.name + '</div>' +
       '<div class="artist-meta">' + a.albums.length + '专辑 · ' + s + '首</div>' +
