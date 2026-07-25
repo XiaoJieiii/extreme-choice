@@ -351,39 +351,47 @@ function getArtistSongs(artist) {
 function buildBracket(songs) {
   const shuffled = [...songs].sort(() => Math.random() - 0.5);
   const allRounds = [];
-  let currentSongs = shuffled;
+  let remaining = songs.length;
 
-  while (currentSongs.length > 1) {
-    const n = currentSongs.length;
-    const matchCount = Math.floor(n / 2);
-    const hasBye = (n % 2 === 1);
-    const byeSong = hasBye ? currentSongs[n - 1] : null;
-    const competing = hasBye ? currentSongs.slice(0, n - 1) : currentSongs;
+  // ★ 预创建所有轮次（第2轮起 match 内 songA/songB 为 null，等待上一轮完成后填入）
+  while (remaining > 1) {
+    const matchCount = Math.floor(remaining / 2);
+    const hasBye = (remaining % 2 === 1);
 
     const matches = [];
     for (let i = 0; i < matchCount; i++) {
       matches.push({
         id: 'R' + (allRounds.length + 1) + '_M' + i,
         matchIndex: i,
-        songA: competing[i * 2],
-        songB: competing[i * 2 + 1],
-        winnerId: null,
-        isBye: false
+        songA: null, songB: null, winnerId: null, isBye: false
       });
     }
 
+    const label = remaining === 2 ? '决赛' :
+      (remaining === 4 ? '半决赛' : '第' + (allRounds.length + 1) + '轮');
+
     allRounds.push({
       roundNumber: allRounds.length + 1,
-      label: n === 2 ? '决赛' : (n === 4 ? '半决赛' : '第' + (allRounds.length + 1) + '轮'),
-      totalSongs: n,
+      label: label,
+      totalSongs: remaining,
       matchCount: matchCount,
       hasBye: hasBye,
-      byeSong: byeSong,
+      byeSong: null,
       matches: matches
     });
 
-    currentSongs = [];
-    if (byeSong) currentSongs.push(byeSong);
+    remaining = matchCount + (hasBye ? 1 : 0);
+  }
+
+  // 将打乱后的歌曲填入第一轮
+  let si = 0;
+  const r0 = allRounds[0];
+  for (const m of r0.matches) {
+    m.songA = shuffled[si++];
+    m.songB = shuffled[si++];
+  }
+  if (r0.hasBye) {
+    r0.byeSong = shuffled[si];
   }
 
   return {
@@ -400,7 +408,10 @@ function getCurrentMatch(bracket) {
   // 按轮次顺序：必须完成当前轮所有对局才能进入下一轮
   for (const round of bracket.rounds) {
     for (const match of round.matches) {
-      if (match.winnerId === null && !match.isBye) {
+      if (match.isBye) continue;
+      // 跳过尚未填充歌曲的 match（等待上一轮完成）
+      if (!match.songA || !match.songB) continue;
+      if (match.winnerId === null) {
         return { round, match };
       }
     }
@@ -409,15 +420,16 @@ function getCurrentMatch(bracket) {
 }
 
 function getCurrentRoundNumber(bracket) {
-  // 返回当前正在进行的是第几轮（第一个有未完成 match 的轮）
   for (const round of bracket.rounds) {
     for (const match of round.matches) {
-      if (match.winnerId === null && !match.isBye) {
+      if (match.isBye) continue;
+      if (!match.songA || !match.songB) continue;
+      if (match.winnerId === null) {
         return round.roundNumber;
       }
     }
   }
-  return bracket.rounds.length; // 全部完成
+  return bracket.rounds.length;
 }
 
 function getOverallProgress(bracket) {
@@ -454,11 +466,19 @@ function processPick(bracket, matchId, winnerId) {
   const nextIdx = bracket.rounds.indexOf(pickedRound) + 1;
   if (nextIdx < bracket.rounds.length) {
     const nr = bracket.rounds[nextIdx];
+    // 随机打乱胜者，确保下一轮配对公平
+    const shuffled = [...winners].sort(() => Math.random() - 0.5);
+    // 如果下一轮有轮空名额，最后一位胜者直接晋级
+    if (nr.hasBye) {
+      nr.byeSong = shuffled.pop();
+    }
+    // 填入匹配
     let wi = 0;
     for (const m of nr.matches) {
-      if (!m.songA && wi < winners.length) { m.songA = winners[wi]; wi++; }
-      if (!m.songB && wi < winners.length) { m.songB = winners[wi]; wi++; }
+      if (!m.songA && wi < shuffled.length) { m.songA = shuffled[wi]; wi++; }
+      if (!m.songB && wi < shuffled.length) { m.songB = shuffled[wi]; wi++; }
     }
+    // 检查是否决赛已完成
     if (nextIdx === bracket.rounds.length - 1) {
       const fm = nr.matches[0];
       if (fm && fm.songA && fm.songB && fm.winnerId) {
